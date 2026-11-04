@@ -270,4 +270,39 @@ class ApiFeatureTest extends TestCase
                 ],
             ]);
     }
+
+    public function test_api_validation_error_defaults_to_indonesian(): void
+    {
+        $response = $this->postJson('/api/v1/questions', []);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['name', 'email', 'subject', 'body']);
+
+        $errors = $response->json('errors.name.0');
+        $this->assertStringContainsString('wajib diisi', $errors);
+    }
+
+    public function test_api_validation_error_supports_english_via_header(): void
+    {
+        $response = $this->withHeader('X-Locale', 'en')
+            ->postJson('/api/v1/questions', []);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['name', 'email', 'subject', 'body']);
+
+        $errors = $response->json('errors.name.0');
+        $this->assertStringContainsString('required', $errors);
+    }
+
+    public function test_locale_switch_web_route(): void
+    {
+        $response = $this->get('/set-locale/en');
+
+        $response->assertRedirect();
+        $this->assertEquals('en', session('locale'));
+
+        $responseId = $this->get('/set-locale/id');
+        $responseId->assertRedirect();
+        $this->assertEquals('id', session('locale'));
+    }
 }

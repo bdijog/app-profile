@@ -61,15 +61,6 @@ class QuestionController extends Controller
             'phone' => ['nullable', 'string', 'max:50'],
             'subject' => ['required', 'string', 'max:255'],
             'body' => ['required', 'string', 'min:10', 'max:5000'],
-        ], [
-            'topic_id.required' => 'Pilih topik pertanyaan.',
-            'topic_id.exists' => 'Topik yang dipilih tidak valid.',
-            'name.required' => 'Nama wajib diisi.',
-            'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
-            'subject.required' => 'Subjek pertanyaan wajib diisi.',
-            'body.required' => 'Isi pertanyaan wajib diisi.',
-            'body.min' => 'Isi pertanyaan minimal 10 karakter.',
         ]);
 
         $question = Question::create([
@@ -79,7 +70,7 @@ class QuestionController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Pertanyaan Anda berhasil dikirim. Tim kami akan meninjau dan merespon secepatnya.',
+            'message' => __('Pertanyaan Anda berhasil dikirim. Tim kami akan meninjau dan merespon secepatnya.'),
             'data' => [
                 'id' => $question->id,
                 'subject' => $question->subject,
