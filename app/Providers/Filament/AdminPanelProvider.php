@@ -35,6 +35,9 @@ class AdminPanelProvider extends PanelProvider
                 'gray' => Color::Zinc,
             ])
             ->sidebarCollapsibleOnDesktop()
+            ->spa()
+            ->resourceCreatePageRedirect('index')
+            ->resourceEditPageRedirect('index')
             ->navigationGroups([
                 'CMS',
                 'Layanan Masyarakat',
