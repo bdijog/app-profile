@@ -17,34 +17,34 @@ class UserForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Pengguna')
+                Section::make(__('User Information'))
                     ->schema([
                         Grid::make(2)->schema([
                             TextInput::make('name')
-                                ->label('Nama')
+                                ->label(__('Name'))
                                 ->required()
                                 ->maxLength(255),
                             TextInput::make('email')
-                                ->label('Email')
+                                ->label(__('Email'))
                                 ->email()
                                 ->required()
                                 ->unique(ignoreRecord: true)
                                 ->maxLength(255),
                             TextInput::make('password')
-                                ->label('Password')
+                                ->label(__('Password'))
                                 ->password()
                                 ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                                 ->dehydrated(fn ($state) => filled($state))
                                 ->required(fn (string $operation): bool => $operation === 'create')
                                 ->maxLength(255),
                             Select::make('role')
-                                ->label('Peran (Role)')
+                                ->label(__('Role'))
                                 ->options(UserRole::class)
                                 ->default(UserRole::Editor->value)
                                 ->required(),
                         ]),
                         FileUpload::make('avatar')
-                            ->label('Avatar / Foto Profil')
+                            ->label(__('Avatar / Profile Photo'))
                             ->image()
                             ->avatar()
                             ->directory('avatars')

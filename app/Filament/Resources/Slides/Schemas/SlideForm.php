@@ -17,37 +17,37 @@ class SlideForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Slide')
+                Section::make(__('Slide Information'))
                     ->schema([
                         TextInput::make('title')
-                            ->label('Judul Slide')
+                            ->label(__('Slide Title'))
                             ->required()
                             ->maxLength(255),
                         Textarea::make('description')
-                            ->label('Deskripsi / Teks Pendukung')
+                            ->label(__('Description / Supporting Text'))
                             ->rows(3),
                         FileUpload::make('image')
-                            ->label('Gambar Slide')
+                            ->label(__('Slide Image'))
                             ->image()
                             ->directory('slides')
                             ->visibility('public')
                             ->required(),
                         TextInput::make('link_url')
-                            ->label('Link URL (opsional)')
+                            ->label(__('Link URL (optional)'))
                             ->url()
                             ->maxLength(255),
                         Grid::make(3)->schema([
                             TextInput::make('sort_order')
-                                ->label('Urutan')
+                                ->label(__('Sort Order'))
                                 ->numeric()
                                 ->default(0),
                             DatePicker::make('start_date')
-                                ->label('Mulai Tayang'),
+                                ->label(__('Start Date')),
                             DatePicker::make('end_date')
-                                ->label('Selesai Tayang'),
+                                ->label(__('End Date')),
                         ]),
                         Toggle::make('is_active')
-                            ->label('Aktif')
+                            ->label(__('Active'))
                             ->default(true),
                     ]),
             ]);

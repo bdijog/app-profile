@@ -23,47 +23,47 @@ class PageForm
             ->components([
                 Grid::make(3)->schema([
                     Group::make([
-                        Section::make('Konten Halaman')
+                        Section::make(__('Page Content'))
                             ->schema([
                                 TextInput::make('title')
-                                    ->label('Judul Halaman')
+                                    ->label(__('Page Title'))
                                     ->required()
                                     ->maxLength(255)
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state ?? ''))),
                                 TextInput::make('slug')
-                                    ->label('Slug')
+                                    ->label(__('Slug'))
                                     ->required()
                                     ->unique(ignoreRecord: true)
                                     ->maxLength(255),
                                 RichEditor::make('content')
-                                    ->label('Isi Konten')
+                                    ->label(__('Content'))
                                     ->required()
                                     ->columnSpanFull(),
                             ]),
                     ])->columnSpan(2),
 
                     Group::make([
-                        Section::make('Pengaturan & Status')
+                        Section::make(__('Settings & Status'))
                             ->schema([
                                 Select::make('status')
-                                    ->label('Status')
+                                    ->label(__('Status'))
                                     ->options(PageStatus::class)
                                     ->default(PageStatus::Published->value)
                                     ->required(),
                                 TextInput::make('sort_order')
-                                    ->label('Urutan')
+                                    ->label(__('Sort Order'))
                                     ->numeric()
                                     ->default(0),
                                 Toggle::make('show_in_menu')
-                                    ->label('Tampilkan di Menu')
+                                    ->label(__('Show in Menu'))
                                     ->default(true),
                             ]),
 
-                        Section::make('Gambar Utama')
+                        Section::make(__('Main Image'))
                             ->schema([
                                 FileUpload::make('image')
-                                    ->label('Foto / Cover')
+                                    ->label(__('Photo / Cover'))
                                     ->image()
                                     ->directory('pages')
                                     ->visibility('public'),

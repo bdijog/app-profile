@@ -18,46 +18,46 @@ class MenuForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Menu')
+                Section::make(__('Menu Information'))
                     ->schema([
                         Grid::make(2)->schema([
                             TextInput::make('name')
-                                ->label('Nama Menu')
+                                ->label(__('Menu Name'))
                                 ->required()
                                 ->maxLength(255),
                             Select::make('location')
-                                ->label('Lokasi Menu')
+                                ->label(__('Menu Location'))
                                 ->options(MenuLocation::class)
                                 ->required(),
                         ]),
                         Toggle::make('is_active')
-                            ->label('Aktif')
+                            ->label(__('Active'))
                             ->default(true),
                     ]),
 
-                Section::make('Item Menu')
+                Section::make(__('Menu Items'))
                     ->schema([
                         Repeater::make('items')
                             ->relationship()
                             ->schema([
                                 TextInput::make('label')
-                                    ->label('Label')
+                                    ->label(__('Label'))
                                     ->required(),
                                 Select::make('type')
-                                    ->label('Tipe Link')
+                                    ->label(__('Link Type'))
                                     ->options(MenuItemType::class)
                                     ->default(MenuItemType::Custom->value)
                                     ->required(),
                                 TextInput::make('url')
-                                    ->label('URL / Path')
-                                    ->placeholder('/tentang-kami atau https://...')
+                                    ->label(__('URL / Path'))
+                                    ->placeholder(__('/about-us or https://...'))
                                     ->required(),
                                 TextInput::make('sort_order')
-                                    ->label('Urutan')
+                                    ->label(__('Sort Order'))
                                     ->numeric()
                                     ->default(0),
                                 Toggle::make('is_active')
-                                    ->label('Aktif')
+                                    ->label(__('Active'))
                                     ->default(true),
                             ])
                             ->columns(5)

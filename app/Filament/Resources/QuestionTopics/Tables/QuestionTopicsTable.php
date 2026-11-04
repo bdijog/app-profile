@@ -18,31 +18,31 @@ class QuestionTopicsTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Topik')
+                    ->label(__('Topic'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('slug')
-                    ->label('Slug')
+                    ->label(__('Slug'))
                     ->color('gray'),
                 TextColumn::make('questions_count')
                     ->counts('questions')
-                    ->label('Jml Pertanyaan')
+                    ->label(__('Question Count'))
                     ->sortable(),
                 TextColumn::make('faqs_count')
                     ->counts('faqs')
-                    ->label('Jml FAQ')
+                    ->label(__('FAQ Count'))
                     ->sortable(),
                 IconColumn::make('is_active')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->boolean(),
                 TextColumn::make('sort_order')
-                    ->label('Urutan')
+                    ->label(__('Sort Order'))
                     ->sortable(),
             ])
             ->defaultSort('sort_order')
             ->filters([
                 TernaryFilter::make('is_active')
-                    ->label('Status Aktif'),
+                    ->label(__('Active Status')),
             ])
             ->recordActions([
                 EditAction::make(),

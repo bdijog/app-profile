@@ -21,36 +21,48 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Notification;
 
 class AnswersRelationManager extends RelationManager
 {
     protected static string $relationship = 'answers';
 
-    protected static ?string $title = 'Jawaban Resmi';
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return __('Official Answers');
+    }
 
-    protected static ?string $modelLabel = 'Jawaban';
+    public static function getModelLabel(): string
+    {
+        return __('Answer');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Answers');
+    }
 
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
                 RichEditor::make('body')
-                    ->label('Isi Tanggapan / Jawaban')
+                    ->label(__('Response / Answer Content'))
                     ->required()
                     ->columnSpanFull(),
                 Grid::make(3)->schema([
                     Select::make('status')
-                        ->label('Status Jawaban')
+                        ->label(__('Answer Status'))
                         ->options(AnswerStatus::class)
                         ->default(AnswerStatus::Published->value)
                         ->required(),
                     Toggle::make('is_published')
-                        ->label('Publikasikan Jawaban')
+                        ->label(__('Publish Answer'))
                         ->default(true)
-                        ->helperText('Jika aktif, jawaban akan tampil ke publik/Flutter.'),
+                        ->helperText(__('If enabled, the answer will be visible to public/Flutter.')),
                     DateTimePicker::make('answered_at')
-                        ->label('Waktu Menjawab')
+                        ->label(__('Answered At'))
                         ->default(now()),
                 ]),
             ]);
@@ -62,23 +74,23 @@ class AnswersRelationManager extends RelationManager
             ->recordTitleAttribute('id')
             ->columns([
                 TextColumn::make('user.name')
-                    ->label('Dijawab Oleh')
+                    ->label(__('Answered By'))
                     ->default(fn () => auth()->user()?->name)
                     ->searchable(),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge(),
                 IconColumn::make('is_published')
-                    ->label('Publik')
+                    ->label(__('Public'))
                     ->boolean(),
                 TextColumn::make('answered_at')
-                    ->label('Waktu Menjawab')
+                    ->label(__('Answered At'))
                     ->dateTime('d M Y H:i')
                     ->sortable(),
             ])
             ->headerActions([
                 CreateAction::make()
-                    ->label('Tulis Jawaban')
+                    ->label(__('Write Answer'))
                     ->mutateFormDataUsing(function (array $data): array {
                         $data['user_id'] = auth()->id();
                         $data['answered_at'] ??= now();

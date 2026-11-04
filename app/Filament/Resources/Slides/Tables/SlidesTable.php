@@ -19,35 +19,35 @@ class SlidesTable
         return $table
             ->columns([
                 ImageColumn::make('image')
-                    ->label('Gambar')
+                    ->label(__('Image'))
                     ->square(),
                 TextColumn::make('title')
-                    ->label('Judul')
+                    ->label(__('Title'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('link_url')
-                    ->label('Link')
+                    ->label(__('Link'))
                     ->limit(30)
                     ->color('gray'),
                 TextColumn::make('sort_order')
-                    ->label('Urutan')
+                    ->label(__('Sort Order'))
                     ->sortable(),
                 IconColumn::make('is_active')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->boolean(),
                 TextColumn::make('start_date')
-                    ->label('Mulai')
+                    ->label(__('Start Date'))
                     ->date('d M Y')
                     ->sortable(),
                 TextColumn::make('end_date')
-                    ->label('Selesai')
+                    ->label(__('End Date'))
                     ->date('d M Y')
                     ->sortable(),
             ])
             ->defaultSort('sort_order')
             ->filters([
                 TernaryFilter::make('is_active')
-                    ->label('Status Aktif'),
+                    ->label(__('Active Status')),
             ])
             ->recordActions([
                 EditAction::make(),

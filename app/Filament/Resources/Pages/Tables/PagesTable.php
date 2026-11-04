@@ -21,36 +21,37 @@ class PagesTable
         return $table
             ->columns([
                 ImageColumn::make('image')
-                    ->label('Cover')
+                    ->label(__('Cover'))
                     ->square(),
                 TextColumn::make('title')
-                    ->label('Judul')
+                    ->label(__('Title'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('slug')
-                    ->label('Slug')
+                    ->label(__('Slug'))
                     ->searchable()
                     ->color('gray'),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge(),
                 IconColumn::make('show_in_menu')
-                    ->label('Di Menu')
+                    ->label(__('In Menu'))
                     ->boolean(),
                 TextColumn::make('sort_order')
-                    ->label('Urutan')
+                    ->label(__('Sort Order'))
                     ->sortable(),
                 TextColumn::make('updated_at')
-                    ->label('Diperbarui')
+                    ->label(__('Updated At'))
                     ->dateTime('d M Y H:i')
                     ->sortable(),
             ])
             ->defaultSort('sort_order')
             ->filters([
                 SelectFilter::make('status')
+                    ->label(__('Status'))
                     ->options(PageStatus::class),
                 TernaryFilter::make('show_in_menu')
-                    ->label('Tampil di Menu'),
+                    ->label(__('Show in Menu')),
             ])
             ->recordActions([
                 EditAction::make(),

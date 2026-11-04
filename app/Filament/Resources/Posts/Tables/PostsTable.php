@@ -21,42 +21,42 @@ class PostsTable
         return $table
             ->columns([
                 ImageColumn::make('image')
-                    ->label('Cover')
+                    ->label(__('Cover'))
                     ->square(),
                 TextColumn::make('title')
-                    ->label('Judul')
+                    ->label(__('Title'))
                     ->searchable()
                     ->sortable()
                     ->limit(40),
                 TextColumn::make('category.name')
-                    ->label('Kategori')
+                    ->label(__('Category'))
                     ->badge()
                     ->sortable(),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge(),
                 IconColumn::make('is_featured')
-                    ->label('Unggulan')
+                    ->label(__('Featured'))
                     ->boolean(),
                 TextColumn::make('view_count')
-                    ->label('Dilihat')
+                    ->label(__('Views'))
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('published_at')
-                    ->label('Tgl Rilis')
+                    ->label(__('Release Date'))
                     ->dateTime('d M Y H:i')
                     ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
                 SelectFilter::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->options(PostStatus::class),
                 SelectFilter::make('category')
-                    ->label('Kategori')
+                    ->label(__('Category'))
                     ->relationship('category', 'name'),
                 TernaryFilter::make('is_featured')
-                    ->label('Unggulan'),
+                    ->label(__('Featured')),
             ])
             ->recordActions([
                 EditAction::make(),

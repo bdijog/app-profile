@@ -25,56 +25,56 @@ class PostForm
             ->components([
                 Grid::make(3)->schema([
                     Group::make([
-                        Section::make('Konten Artikel')
+                        Section::make(__('Article Content'))
                             ->schema([
                                 TextInput::make('title')
-                                    ->label('Judul Artikel')
+                                    ->label(__('Article Title'))
                                     ->required()
                                     ->maxLength(255)
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state ?? ''))),
                                 TextInput::make('slug')
-                                    ->label('Slug')
+                                    ->label(__('Slug'))
                                     ->required()
                                     ->unique(ignoreRecord: true)
                                     ->maxLength(255),
                                 Textarea::make('summary')
-                                    ->label('Ringkasan (Summary)')
+                                    ->label(__('Summary'))
                                     ->rows(3)
-                                    ->helperText('Ringkasan singkat yang akan tampil pada kartu artikel.')
+                                    ->helperText(__('Brief summary to display on the article card.'))
                                     ->columnSpanFull(),
                                 RichEditor::make('content')
-                                    ->label('Isi Konten')
+                                    ->label(__('Content'))
                                     ->required()
                                     ->columnSpanFull(),
                             ]),
                     ])->columnSpan(2),
 
                     Group::make([
-                        Section::make('Publikasi & Kategori')
+                        Section::make(__('Publication & Category'))
                             ->schema([
                                 Select::make('status')
-                                    ->label('Status')
+                                    ->label(__('Status'))
                                     ->options(PostStatus::class)
                                     ->default(PostStatus::Draft->value)
                                     ->required(),
                                 Select::make('category_id')
-                                    ->label('Kategori')
+                                    ->label(__('Category'))
                                     ->relationship('category', 'name')
                                     ->searchable()
                                     ->preload(),
                                 DateTimePicker::make('published_at')
-                                    ->label('Tanggal Publikasi')
+                                    ->label(__('Publication Date'))
                                     ->default(now()),
                                 Toggle::make('is_featured')
-                                    ->label('Artikel Unggulan')
-                                    ->helperText('Tampilkan di bagian headline/highlight.'),
+                                    ->label(__('Featured Article'))
+                                    ->helperText(__('Display in headline/highlight section.')),
                             ]),
 
-                        Section::make('Gambar Utama')
+                        Section::make(__('Main Image'))
                             ->schema([
                                 FileUpload::make('image')
-                                    ->label('Foto / Cover')
+                                    ->label(__('Photo / Cover'))
                                     ->image()
                                     ->directory('posts')
                                     ->visibility('public'),

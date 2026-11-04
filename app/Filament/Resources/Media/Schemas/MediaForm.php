@@ -13,17 +13,17 @@ class MediaForm
     {
         return $schema
             ->components([
-                Section::make('Upload Berkas')
+                Section::make(__('Upload File'))
                     ->schema([
                         FileUpload::make('file_path')
-                            ->label('Pilih Berkas / Gambar')
+                            ->label(__('Choose File / Image'))
                             ->directory('uploads')
                             ->visibility('public')
                             ->required()
                             ->storeFileNamesIn('file_name'),
                         TextInput::make('alt_text')
-                            ->label('Teks Alternatif (Alt Text)')
-                            ->placeholder('Deskripsi gambar untuk aksesibilitas'),
+                            ->label(__('Alternative Text (Alt Text)'))
+                            ->placeholder(__('Image description for accessibility')),
                     ]),
             ]);
     }

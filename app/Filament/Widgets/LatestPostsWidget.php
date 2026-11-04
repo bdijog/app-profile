@@ -8,6 +8,7 @@ use Filament\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
 
 class LatestPostsWidget extends TableWidget
@@ -16,33 +17,37 @@ class LatestPostsWidget extends TableWidget
 
     protected int|string|array $columnSpan = 'full';
 
-    protected static ?string $heading = 'Artikel & Berita Terbaru';
+    public function getTableHeading(): string|Htmlable|null
+    {
+        return __('Latest Articles & News');
+    }
 
     public function table(Table $table): Table
     {
         return $table
+            ->heading(__('Latest Articles & News'))
             ->query(fn (): Builder => Post::query()->with('category')->latest()->limit(5))
             ->columns([
                 TextColumn::make('title')
-                    ->label('Judul Artikel')
+                    ->label(__('Article Title'))
                     ->limit(50),
                 TextColumn::make('category.name')
-                    ->label('Kategori')
+                    ->label(__('Category'))
                     ->badge(),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge(),
                 TextColumn::make('view_count')
-                    ->label('Dilihat')
+                    ->label(__('Views'))
                     ->numeric(),
                 TextColumn::make('created_at')
-                    ->label('Dibuat')
+                    ->label(__('Created At'))
                     ->since(),
             ])
             ->paginated(false)
             ->recordActions([
                 Action::make('edit')
-                    ->label('Buka')
+                    ->label(__('Open'))
                     ->url(fn (Post $record): string => PostResource::getUrl('edit', ['record' => $record])),
             ]);
     }

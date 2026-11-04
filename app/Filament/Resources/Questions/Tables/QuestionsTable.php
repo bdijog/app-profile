@@ -18,37 +18,37 @@ class QuestionsTable
         return $table
             ->columns([
                 TextColumn::make('subject')
-                    ->label('Subjek Pertanyaan')
+                    ->label(__('Question Subject'))
                     ->searchable()
                     ->sortable()
                     ->limit(40),
                 TextColumn::make('name')
-                    ->label('Penanya')
+                    ->label(__('Inquirer'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('topic.name')
-                    ->label('Topik')
+                    ->label(__('Topic'))
                     ->badge()
                     ->sortable(),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge(),
                 TextColumn::make('answers_count')
                     ->counts('answers')
-                    ->label('Jml Jawaban')
+                    ->label(__('Answer Count'))
                     ->sortable(),
                 TextColumn::make('created_at')
-                    ->label('Diajukan')
+                    ->label(__('Submitted At'))
                     ->dateTime('d M Y H:i')
                     ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
                 SelectFilter::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->options(QuestionStatus::class),
                 SelectFilter::make('topic')
-                    ->label('Topik')
+                    ->label(__('Topic'))
                     ->relationship('topic', 'name'),
             ])
             ->recordActions([

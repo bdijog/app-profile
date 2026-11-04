@@ -13,7 +13,6 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 
 class MediaResource extends Resource
 {
@@ -21,15 +20,27 @@ class MediaResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedFolder;
 
-    protected static string|UnitEnum|null $navigationGroup = 'CMS';
-
-    protected static ?string $navigationLabel = 'Galeri Media';
-
-    protected static ?string $modelLabel = 'Media';
-
-    protected static ?string $pluralModelLabel = 'Galeri Media';
-
     protected static ?int $navigationSort = 6;
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('CMS');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Media Gallery');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Media');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Media Gallery');
+    }
 
     public static function form(Schema $schema): Schema
     {

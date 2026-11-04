@@ -23,23 +23,23 @@ class StatsOverviewWidget extends BaseStatsOverviewWidget
         $activeSlides = Slide::active()->count();
 
         return [
-            Stat::make('Pertanyaan Masuk', $pendingQuestions)
-                ->description($pendingQuestions > 0 ? 'Menunggu tanggapan admin' : 'Semua pertanyaan teratasi')
+            Stat::make(__('Incoming Questions'), $pendingQuestions)
+                ->description($pendingQuestions > 0 ? __('Waiting for admin response') : __('All questions resolved'))
                 ->descriptionIcon($pendingQuestions > 0 ? Heroicon::OutlinedExclamationCircle : Heroicon::OutlinedCheckCircle)
                 ->color($pendingQuestions > 0 ? 'warning' : 'success'),
 
-            Stat::make('Pertanyaan Terjawab', $answeredQuestions)
-                ->description('Telah dipublikasikan ke warga')
+            Stat::make(__('Answered Questions'), $answeredQuestions)
+                ->description(__('Published to the public'))
                 ->descriptionIcon(Heroicon::OutlinedChatBubbleLeftRight)
                 ->color('success'),
 
-            Stat::make('Artikel Terbit', $publishedPosts)
-                ->description(Post::count().' total artikel tersimpan')
+            Stat::make(__('Published Articles'), $publishedPosts)
+                ->description(Post::count().' '.__('total saved articles'))
                 ->descriptionIcon(Heroicon::OutlinedDocumentText)
                 ->color('primary'),
 
-            Stat::make('Slide Aktif', $activeSlides)
-                ->description('Tayang di halaman utama')
+            Stat::make(__('Active Slides'), $activeSlides)
+                ->description(__('Showing on the home page'))
                 ->descriptionIcon(Heroicon::OutlinedPhoto)
                 ->color('info'),
         ];

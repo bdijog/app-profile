@@ -17,18 +17,18 @@ class MediaTable
         return $table
             ->columns([
                 ImageColumn::make('file_path')
-                    ->label('Preview')
+                    ->label(__('Preview'))
                     ->square(),
                 TextColumn::make('file_name')
-                    ->label('Nama Berkas')
+                    ->label(__('File Name'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('alt_text')
-                    ->label('Alt Text')
+                    ->label(__('Alt Text'))
                     ->searchable()
                     ->color('gray'),
                 TextColumn::make('created_at')
-                    ->label('Diupload')
+                    ->label(__('Uploaded At'))
                     ->dateTime('d M Y H:i')
                     ->sortable(),
             ])

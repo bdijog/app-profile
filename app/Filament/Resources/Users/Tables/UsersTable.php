@@ -19,26 +19,27 @@ class UsersTable
         return $table
             ->columns([
                 ImageColumn::make('avatar')
-                    ->label('Avatar')
+                    ->label(__('Avatar'))
                     ->circular(),
                 TextColumn::make('name')
-                    ->label('Nama')
+                    ->label(__('Name'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('email')
-                    ->label('Email')
+                    ->label(__('Email'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('role')
-                    ->label('Role')
+                    ->label(__('Role'))
                     ->badge(),
                 TextColumn::make('created_at')
-                    ->label('Terdaftar')
+                    ->label(__('Registered At'))
                     ->dateTime('d M Y')
                     ->sortable(),
             ])
             ->filters([
                 SelectFilter::make('role')
+                    ->label(__('Role'))
                     ->options(UserRole::class),
             ])
             ->recordActions([

@@ -17,37 +17,37 @@ class CategoryForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Kategori')
+                Section::make(__('Category Information'))
                     ->schema([
                         Grid::make(2)->schema([
                             TextInput::make('name')
-                                ->label('Nama Kategori')
+                                ->label(__('Category Name'))
                                 ->required()
                                 ->maxLength(255)
                                 ->live(onBlur: true)
                                 ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state ?? ''))),
                             TextInput::make('slug')
-                                ->label('Slug')
+                                ->label(__('Slug'))
                                 ->required()
                                 ->unique(ignoreRecord: true)
                                 ->maxLength(255),
                         ]),
                         Textarea::make('description')
-                            ->label('Deskripsi')
+                            ->label(__('Description'))
                             ->rows(3)
                             ->columnSpanFull(),
                         Grid::make(2)->schema([
                             TextInput::make('icon')
-                                ->label('Ikon (opsional)')
+                                ->label(__('Icon (optional)'))
                                 ->placeholder('heroicon-o-folder')
                                 ->maxLength(255),
                             TextInput::make('sort_order')
-                                ->label('Urutan')
+                                ->label(__('Sort Order'))
                                 ->numeric()
                                 ->default(0),
                         ]),
                         Toggle::make('is_active')
-                            ->label('Aktif')
+                            ->label(__('Active'))
                             ->default(true),
                     ]),
             ]);
