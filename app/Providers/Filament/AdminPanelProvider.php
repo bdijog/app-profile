@@ -15,6 +15,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
@@ -36,6 +37,11 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Indigo,
                 'gray' => Color::Zinc,
             ])
+            ->plugin(
+                SpatieTranslatablePlugin::make()
+                    ->defaultLocales(['id', 'en'])
+                    ->persist()
+            )
             ->sidebarCollapsibleOnDesktop()
             ->resourceCreatePageRedirect('index')
             ->resourceEditPageRedirect('index')

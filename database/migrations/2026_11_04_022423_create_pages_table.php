@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('title');
+            $table->json('title');
             $table->string('slug')->unique();
-            $table->longText('content');
+            $table->json('content');
             $table->string('image')->nullable();
             $table->string('status')->default(PageStatus::Draft->value);
             $table->integer('sort_order')->default(0);

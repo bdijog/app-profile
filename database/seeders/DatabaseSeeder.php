@@ -64,8 +64,14 @@ class DatabaseSeeder extends Seeder
         $catBerita = Category::firstOrCreate(
             ['slug' => 'berita-utama'],
             [
-                'name' => 'Berita Utama',
-                'description' => 'Berita terkini seputar kegiatan dan pengumuman instansi.',
+                'name' => [
+                    'id' => 'Berita Utama',
+                    'en' => 'Main News',
+                ],
+                'description' => [
+                    'id' => 'Berita terkini seputar kegiatan dan pengumuman instansi.',
+                    'en' => 'Latest news regarding agency activities and announcements.',
+                ],
                 'sort_order' => 1,
                 'is_active' => true,
             ]
@@ -74,8 +80,14 @@ class DatabaseSeeder extends Seeder
         $catLayanan = Category::firstOrCreate(
             ['slug' => 'info-layanan'],
             [
-                'name' => 'Informasi Layanan',
-                'description' => 'Panduan dan alur pelayanan untuk masyarakat.',
+                'name' => [
+                    'id' => 'Informasi Layanan',
+                    'en' => 'Service Information',
+                ],
+                'description' => [
+                    'id' => 'Panduan dan alur pelayanan untuk masyarakat.',
+                    'en' => 'Guides and service flow for the public.',
+                ],
                 'sort_order' => 2,
                 'is_active' => true,
             ]
@@ -87,9 +99,18 @@ class DatabaseSeeder extends Seeder
             [
                 'user_id' => $admin->id,
                 'category_id' => $catBerita->id,
-                'title' => 'Sosialisasi Pelayanan Digital Masyarakat Berbasis Mobile',
-                'summary' => 'Pemerintah meluncurkan portal layanan mobile untuk mempermudah akses masyarakat dalam menyampaikan aspirasi dan pengaduan.',
-                'content' => '<p>Dalam rangka meningkatkan mutu pelayanan publik, instansi kami meluncurkan aplikasi portal digital. Aplikasi ini memungkinkan masyarakat menyampaikan pertanyaan, pengaduan, dan memantau status secara langsung.</p>',
+                'title' => [
+                    'id' => 'Sosialisasi Pelayanan Digital Masyarakat Berbasis Mobile',
+                    'en' => 'Socialization of Mobile-Based Public Digital Services',
+                ],
+                'summary' => [
+                    'id' => 'Pemerintah meluncurkan portal layanan mobile untuk mempermudah akses masyarakat dalam menyampaikan aspirasi dan pengaduan.',
+                    'en' => 'The government launches a mobile service portal to facilitate public access in conveying aspirations and complaints.',
+                ],
+                'content' => [
+                    'id' => '<p>Dalam rangka meningkatkan mutu pelayanan publik, instansi kami meluncurkan aplikasi portal digital. Aplikasi ini memungkinkan masyarakat menyampaikan pertanyaan, pengaduan, dan memantau status secara langsung.</p>',
+                    'en' => '<p>In order to improve the quality of public services, our agency has launched a digital portal application. This application allows the public to submit questions, complaints, and monitor their status directly.</p>',
+                ],
                 'status' => PostStatus::Published,
                 'published_at' => now(),
                 'is_featured' => true,
@@ -102,8 +123,14 @@ class DatabaseSeeder extends Seeder
             ['slug' => 'tentang-kami'],
             [
                 'user_id' => $admin->id,
-                'title' => 'Tentang Kami',
-                'content' => '<h2>Profil Instansi</h2><p>Kami berkomitmen memberikan pelayanan terbaik bagi seluruh lapisan masyarakat secara transparan, akuntabel, dan inovatif.</p>',
+                'title' => [
+                    'id' => 'Tentang Kami',
+                    'en' => 'About Us',
+                ],
+                'content' => [
+                    'id' => '<h2>Profil Instansi</h2><p>Kami berkomitmen memberikan pelayanan terbaik bagi seluruh lapisan masyarakat secara transparan, akuntabel, dan inovatif.</p>',
+                    'en' => '<h2>Agency Profile</h2><p>We are committed to providing the best service for all levels of society in a transparent, accountable, and innovative manner.</p>',
+                ],
                 'status' => PageStatus::Published,
                 'sort_order' => 1,
                 'show_in_menu' => true,
@@ -112,9 +139,16 @@ class DatabaseSeeder extends Seeder
 
         // 6. Sample Slide
         Slide::firstOrCreate(
-            ['title' => 'Selamat Datang di Portal Layanan Publik'],
+            ['link_url' => '/tentang-kami'],
             [
-                'description' => 'Ajukan pertanyaan dan dapatkan informasi terpercaya seputar pelayanan kami.',
+                'title' => [
+                    'id' => 'Selamat Datang di Portal Layanan Publik',
+                    'en' => 'Welcome to the Public Services Portal',
+                ],
+                'description' => [
+                    'id' => 'Ajukan pertanyaan dan dapatkan informasi terpercaya seputar pelayanan kami.',
+                    'en' => 'Submit inquiries and obtain trusted information regarding our services.',
+                ],
                 'image' => 'slides/default-banner.jpg',
                 'link_url' => '/tentang-kami',
                 'sort_order' => 1,
@@ -127,8 +161,14 @@ class DatabaseSeeder extends Seeder
         $topicPelayanan = QuestionTopic::firstOrCreate(
             ['slug' => 'pelayanan-umum'],
             [
-                'name' => 'Pelayanan Umum',
-                'description' => 'Pertanyaan seputar syarat, biaya, dan prosedur layanan.',
+                'name' => [
+                    'id' => 'Pelayanan Umum',
+                    'en' => 'General Services',
+                ],
+                'description' => [
+                    'id' => 'Pertanyaan seputar syarat, biaya, dan prosedur layanan.',
+                    'en' => 'Questions regarding requirements, costs, and service procedures.',
+                ],
                 'sort_order' => 1,
                 'is_active' => true,
             ]
@@ -137,8 +177,14 @@ class DatabaseSeeder extends Seeder
         $topicAdministrasi = QuestionTopic::firstOrCreate(
             ['slug' => 'administrasi-kependudukan'],
             [
-                'name' => 'Administrasi Kependudukan',
-                'description' => 'Pertanyaan terkait berkas dan surat keterangan.',
+                'name' => [
+                    'id' => 'Administrasi Kependudukan',
+                    'en' => 'Civil Administration',
+                ],
+                'description' => [
+                    'id' => 'Pertanyaan terkait berkas dan surat keterangan.',
+                    'en' => 'Questions regarding documents and certificates.',
+                ],
                 'sort_order' => 2,
                 'is_active' => true,
             ]
@@ -146,10 +192,17 @@ class DatabaseSeeder extends Seeder
 
         // 8. Sample FAQ
         Faq::firstOrCreate(
-            ['question' => 'Berapa lama proses tanggapan terhadap pertanyaan masyarakat?'],
+            ['sort_order' => 1],
             [
                 'topic_id' => $topicPelayanan->id,
-                'answer' => '<p>Tim admin akan meninjau dan menjawab pertanyaan Anda maksimal 1x24 jam kerja.</p>',
+                'question' => [
+                    'id' => 'Berapa lama proses tanggapan terhadap pertanyaan masyarakat?',
+                    'en' => 'How long does it take to respond to public inquiries?',
+                ],
+                'answer' => [
+                    'id' => '<p>Tim admin akan meninjau dan menjawab pertanyaan Anda maksimal 1x24 jam kerja.</p>',
+                    'en' => '<p>The admin team will review and answer your question within 1x24 working hours maximum.</p>',
+                ],
                 'sort_order' => 1,
                 'is_active' => true,
             ]
@@ -184,14 +237,21 @@ class DatabaseSeeder extends Seeder
         $menuHeader = Menu::firstOrCreate(
             ['location' => MenuLocation::Header->value],
             [
-                'name' => 'Menu Utama Header',
+                'name' => [
+                    'id' => 'Menu Utama Header',
+                    'en' => 'Main Header Menu',
+                ],
                 'is_active' => true,
             ]
         );
 
         MenuItem::firstOrCreate(
-            ['menu_id' => $menuHeader->id, 'label' => 'Beranda'],
+            ['menu_id' => $menuHeader->id, 'sort_order' => 1],
             [
+                'label' => [
+                    'id' => 'Beranda',
+                    'en' => 'Home',
+                ],
                 'url' => '/',
                 'type' => MenuItemType::Custom,
                 'sort_order' => 1,
@@ -200,8 +260,12 @@ class DatabaseSeeder extends Seeder
         );
 
         MenuItem::firstOrCreate(
-            ['menu_id' => $menuHeader->id, 'label' => 'Tentang Kami'],
+            ['menu_id' => $menuHeader->id, 'sort_order' => 2],
             [
+                'label' => [
+                    'id' => 'Tentang Kami',
+                    'en' => 'About Us',
+                ],
                 'url' => '/pages/tentang-kami',
                 'type' => MenuItemType::Page,
                 'sort_order' => 2,
@@ -210,8 +274,12 @@ class DatabaseSeeder extends Seeder
         );
 
         MenuItem::firstOrCreate(
-            ['menu_id' => $menuHeader->id, 'label' => 'Berita'],
+            ['menu_id' => $menuHeader->id, 'sort_order' => 3],
             [
+                'label' => [
+                    'id' => 'Berita',
+                    'en' => 'News',
+                ],
                 'url' => '/posts',
                 'type' => MenuItemType::Custom,
                 'sort_order' => 3,
@@ -220,8 +288,12 @@ class DatabaseSeeder extends Seeder
         );
 
         MenuItem::firstOrCreate(
-            ['menu_id' => $menuHeader->id, 'label' => 'Tanya Masyarakat'],
+            ['menu_id' => $menuHeader->id, 'sort_order' => 4],
             [
+                'label' => [
+                    'id' => 'Tanya Masyarakat',
+                    'en' => 'Public Inquiries',
+                ],
                 'url' => '/pertanyaan',
                 'type' => MenuItemType::Custom,
                 'sort_order' => 4,

@@ -9,12 +9,17 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Translatable\HasTranslations;
 
 #[Fillable(['user_id', 'title', 'slug', 'content', 'image', 'status', 'sort_order', 'show_in_menu'])]
 class Page extends Model
 {
     /** @use HasFactory<PageFactory> */
     use HasFactory;
+
+    use HasTranslations;
+
+    public array $translatable = ['title', 'content'];
 
     protected function casts(): array
     {

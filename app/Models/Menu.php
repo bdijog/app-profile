@@ -8,12 +8,17 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Translatable\HasTranslations;
 
 #[Fillable(['name', 'location', 'is_active'])]
 class Menu extends Model
 {
     /** @use HasFactory<MenuFactory> */
     use HasFactory;
+
+    use HasTranslations;
+
+    public array $translatable = ['name'];
 
     protected function casts(): array
     {
